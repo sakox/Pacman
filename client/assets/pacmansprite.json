@@ -1,0 +1,28 @@
+{"frames": {
+
+"player.png":
+{
+	"frame": {"x":2,"y":2,"w":23,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":23,"h":24},
+	"sourceSize": {"w":23,"h":24}
+},
+"player1.png":
+{
+	"frame": {"x":27,"y":2,"w":23,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":23,"h":24},
+	"sourceSize": {"w":23,"h":24}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "pacmansprite.png",
+	"format": "RGBA8888",
+	"size": {"w":52,"h":28},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:2052090862f6e8016e5d63021e243f88:5164e0284c5f12a23036cd6c2e5688b7:47303083f1b511ebe0cbf686c32349ad$"
+}
+}

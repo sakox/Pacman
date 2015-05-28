@@ -1,0 +1,27 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<header class="hero-unit" id="banner">
+    <div class="container">
+        <h1>'Pacman HighScore!</h1>
+        <img src="http://img2.wikia.nocookie.net/__cb20140611091034/ssb/images/2/20/Pac-ManLogo.png" alt="PacmanGame">
+    </div>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Highscores:</h1>
+            <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="score in highScores">
+                <li>
+                    <p> {{score.name}}: {{score.score}}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <p>Sako og Dilan - Pacman v1.0 </p>
+    </div>
+</footer>
