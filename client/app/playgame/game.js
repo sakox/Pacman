@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-
+    //initier variabler til spillet
     function Game() {
         this.map = null;
         this.layer = null;
@@ -31,7 +31,7 @@
     }
 
     Game.prototype = {
-
+        //laver og tilføjer elementer til spillet
         create: function () {
 
             this.map = this.add.tilemap('pacmanmap');
@@ -61,6 +61,7 @@
 
 
         },
+        //tilføjer pacman og starter animation + bevægelse
         addPacman: function () {
             this.pacman = this.add.sprite((12 * this.gridsize) + 12, (11 * this.gridsize) + 12, 'pacmansprite', 0);
             this.pacman.anchor.set(0.5);
@@ -69,6 +70,7 @@
             this.pacman.animations.play('walk', 7, true);
             this.move(Phaser.LEFT);
         },
+        //tilføjer dots, powerdots og ghosts til de respektive pladser på banen
         addObjects: function () {
             this.dots = this.add.group();
             this.dots.enableBody = true;
@@ -100,9 +102,11 @@
 
 
         },
+        //pause funktion
         togglePause: function () {
             this.physics.arcade.isPaused = (this.physics.arcade.isPaused) ? false : true;
         },
+        //hvis pacman rammer en teleport teleporteres den til modsatte teleport
         teleport: function () {
             if (this.current === Phaser.RIGHT) {
                 this.pacman.x = 62;
@@ -110,9 +114,11 @@
                 this.pacman.x = 544;
             }
         },
+        //opdaterer scoretext hvergang denne kaldes
         updateScore: function () {
             this.text.setText('Score: ' + this.score);
         },
+        //tjekker hvilke knapper (højre,venstre,op,ned) der trykkes
         checkKeys: function () {
 
             if (this.cursors.left.isDown && this.current !== Phaser.LEFT) {
@@ -129,6 +135,7 @@
             }
 
         },
+        //smider ghosts ud af fængslet hvis de er der
         startGhosts: function () {
             this.ghosts.forEach(function (item) {
                 if (this.rnd.integerInRange(0, 1) === 0 && item.x > 230 && item.x < 360 && item.y === 228) {
@@ -138,7 +145,7 @@
                 }
             }, this);
         },
-
+        //tjekker om den vej man vil gå er låst
         checkDirection: function (turnTo) {
 
             if (this.turning === turnTo || this.directions[turnTo] === null || this.directions[turnTo].index !== 15 && this.directions[turnTo].index !== 10) {
@@ -157,6 +164,7 @@
             }
 
         },
+        //tjekker om pacman er helt inde på et felt før det drejer
         turn: function () {
 
             var cx = Math.floor(this.pacman.x);
@@ -180,6 +188,7 @@
             return true;
 
         },
+        //bevægelses funktion
         move: function (direction) {
 
             var speed = this.speed;
@@ -209,7 +218,7 @@
             this.current = direction;
 
         },
-
+        //funktion der kører for hver frame, fx tjek af kollisioner og tjek af felter til pacman
         update: function () {
             this.physics.arcade.collide(this.pacman, this.layer);
             this.physics.arcade.overlap(this.pacman, this.dots, this.eatDot, null, this);
@@ -234,7 +243,7 @@
             }
 
         },
-
+        //kollision mellem pacman og ghost
         hitGhost: function (pacman, ghosts) {
 
             if (this.powerful) {
@@ -252,7 +261,7 @@
 
         },
 
-
+        //kollision mellem pacman og normal dot
         eatDot: function (pacman, dot) {
 
             dot.kill();
@@ -265,6 +274,7 @@
             }
 
         },
+        //kollision mellem pacman og powerdot, gør pacman stærk
         eatPowerDot: function (pacman, powerdot) {
 
             powerdot.kill();
@@ -280,11 +290,13 @@
             }
 
         },
+        //gør pacman svag igen
         makeNormal: function () {
             this.powerful = false;
             this.ghosts.setAll('alpha', 1);
             this.ghostKilled = 1;
         },
+        //Skriver game over og sender scoren til feltet for highscores under spillet
         gameOver: function () {
             this.gameText = this.add.text(this.world.centerX, this.world.centerY, '- Game Over! -', {
                 font: "60px Arial",
@@ -292,14 +304,8 @@
                 align: "center"
             });
             this.gameText.anchor.setTo(0.5, 0.5);
-            this.sendScoreToDb();
-
-
-        },
-        sendScoreToDb: function () {
-            //$scope.addScore('Sako',this.score);
             var score = document.getElementById('scoreText').value = this.score;
-            console.log('hey');
+
 
         }
 

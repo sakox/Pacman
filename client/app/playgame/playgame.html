@@ -1,12 +1,13 @@
 <div class="bggame">
+    <div ng-include="'components/navbar/navbar.html'"></div>
     <div id="pacman-game" class="game"></div>
     <form class="score-form">
         <label>Post Score</label>
         <p class="input-group">
             <input type="text" class="form-control" placeholder="Name Here!" ng-model="newScoreName">
-            <input id="scoreText" type="text" class="form-control" placeholder="0" ng-model="newScore" disabled>
+            <input id="scoreText" type="number" class="form-control" placeholder=0 value=0 ng-model="newHighScore" disabled>
             <span class="input-group-btn">
-        <button type="submit" class="btn btn-primary" ng-click="addScore()">Post Score</button>
+        <button id="button" type="submit" class="btn btn-primary" ng-click="addScore()">Post Score</button>
       </span>
         </p>
     </form>

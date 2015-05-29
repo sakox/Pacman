@@ -5,7 +5,7 @@ var Highscore = require('./highscore.model');
 
 // Get list of highscores
 exports.index = function(req, res) {
-  Highscore.find(function (err, highscores) {
+  Highscore.find().sort( { score: -1 } ).exec(function (err, highscores) {
     if(err) { return handleError(res, err); }
     return res.json(200, highscores);
   });
